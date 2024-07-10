@@ -10,11 +10,13 @@ import { redirect } from "next/navigation";
 type HomeProps = {
   searchParams: {
     page?: string;
+    cat?: string;
   };
 };
 
 export default async function Home({ searchParams }: HomeProps) {
   const page = parseInt(searchParams.page || '1', 10);
+  const cat = searchParams.cat;
   const session = await getServerSession(authOptions);
   
   if (!session) {
@@ -26,7 +28,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <Featured />
       <CategoryList />
       <div className="flex flex-col lg:flex-row gap-[50px] mt-[1.2rem] w-full">
-        <div className="w-[100%] lg:w-[75%]"><CardList page={page}/></div>
+        <div className="w-[100%] lg:w-[75%]"><CardList cat={cat} page={page}/></div>
         <div className="w-[100%] lg:w-[25%]"><Menu /></div>
       </div>
     </>
