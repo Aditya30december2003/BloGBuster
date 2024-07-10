@@ -2,7 +2,9 @@ import prisma from "@/app/api/auth/[...nextauth]/connect";
 import { NextResponse } from "next/server";
 type Params = {
   id: string;
+  slug: string; // Add 'slug' property to Params type
 };
+;
 export const GET = async (req: Request, { params }: { params: Params }) => {
   
 
