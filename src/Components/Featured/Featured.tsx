@@ -11,7 +11,7 @@ const Featured = () => {
    }
   return (
     <div>
-      <h1 className='text-[1.9rem] lg:text-[2.8rem]'><b>Hey!! {session.user.name} here!</b> Welcome to BloG<span className='font-bold'>Buster</span>, where you can share your coding journey, tips and tutorials!!!</h1>
+      <h1 className='text-[1.9rem] lg:text-[2.8rem]'><b>Hey!! {session?.user?.name} here!</b> Welcome to BloG<span className='font-bold'>Buster</span>, where you can share your coding journey, tips and tutorials!!!</h1>
 
       <div className='flex items-center w-full gap-7'>
         <div className='hidden lg:block mt-8 w-[45%]'><Image src='./scene.jpg' alt='' width={535} height={525}/></div>
