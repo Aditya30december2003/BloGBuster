@@ -6,7 +6,7 @@ import prisma from './connect'
 import { Adapter } from "next-auth/adapters";
 export const authOptions = {
     adapter: PrismaAdapter(prisma) as Adapter,
-    debug: process.env.NODE_ENV !== 'production', // Enable debug mode in development
+    // debug: process.env.NODE_ENV !== 'production', // Enable debug mode in development
     // callbacks: {
     //     async signIn({ user, account, profile, email, credentials }) {
     //         console.log('Attempting to sign in user:', user);
