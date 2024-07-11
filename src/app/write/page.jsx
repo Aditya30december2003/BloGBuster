@@ -4,15 +4,19 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { FaRegImage } from "react-icons/fa";
 import { HiMiniArrowUpTray } from "react-icons/hi2";
 import { GoVideo } from "react-icons/go";
-import ReactQuill from 'react-quill';
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
-import { app } from "@/utils/firebase";
+import dynamic from 'next/dynamic'
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
+const FirebaseImports = dynamic(() => import('./firebaseConfig'), { ssr: false })
 import "react-quill/dist/quill.bubble.css"
+
+const ClientOnly = ({ children }) => {
+  const [hasMounted, setHasMounted] = useState(false)
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+  if (!hasMounted) return null
+  return children
+}
 
 const Page = () => {
     const [on , setOn] = useState(false)
@@ -23,38 +27,30 @@ const Page = () => {
     const [catSlug, setCatSlug] = useState("");
     // const router = useRouter()
     useEffect(() => {
-      const storage = getStorage(app);
-      const upload = () => {
-        const name = new Date().getTime() + file.name;
-        const storageRef = ref(storage, name);
-  
-        const uploadTask = uploadBytesResumable(storageRef, file);
-  
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {
-            const progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
-            switch (snapshot.state) {
-              case "paused":
-                console.log("Upload is paused");
-                break;
-              case "running":
-                console.log("Upload is running");
-                break;
+      if (typeof window !== 'undefined' && file) {
+        FirebaseImports.then(({ getStorage, ref, uploadBytesResumable, getDownloadURL, app }) => {
+          const storage = getStorage(app);
+          const name = new Date().getTime() + file.name;
+          const storageRef = ref(storage, name);
+          const uploadTask = uploadBytesResumable(storageRef, file);
+          
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log("Upload is " + progress + "% done");
+            },
+            (error) => {
+              console.error("Upload error:", error);
+            },
+            () => {
+              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                setMedia(downloadURL);
+              });
             }
-          },
-          (error) => {},
-          () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              setMedia(downloadURL);
-            });
-          }
-        );
-      };
-  
-      file && upload();
+          );
+        });
+      }
     }, [file]);
 
 
@@ -114,4 +110,10 @@ const Page = () => {
   )
 }
 
-export default Page;
+export default function WrappedPage() {
+  return (
+    <ClientOnly>
+      <Page />
+    </ClientOnly>
+  )
+}
