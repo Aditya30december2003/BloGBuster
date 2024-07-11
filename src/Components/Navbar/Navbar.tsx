@@ -20,16 +20,16 @@ const Navbar = () => {
       <div className='hidden lg:block'>
         <ul className='flex gap-3'>
             <li className='cursor-pointer'>
-                <Image src='./facebook.png' alt='facebook' width={24} height={24}/>
+                <Image src='/facebook.png' alt='facebook' width={24} height={24}/>
             </li>
             <li className='cursor-pointer'>
-                <Image src='./instagram.png' alt='instagram' width={24} height={24}/>
+                <Image src='/instagram.png' alt='instagram' width={24} height={24}/>
             </li>
             <li className='cursor-pointer'>
-                <Image src='./tiktok.png' alt='tiktok' width={24} height={24}/>
+                <Image src='/tiktok.png' alt='tiktok' width={24} height={24}/>
             </li>
             <li className='cursor-pointer'>
-                <Image src='./youtube.png' alt='youtube' width={24} height={24}/>
+                <Image src='/youtube.png' alt='youtube' width={24} height={24}/>
             </li>
         </ul>
       </div>
