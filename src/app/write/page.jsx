@@ -34,7 +34,6 @@ const Page = () => {
 
   useEffect(() => {
     if (file) {
-      const storage = getStorage(app);
       const name = new Date().getTime() + file.name;
       const storageRef = ref(storage, name);
       const uploadTask = uploadBytesResumable(storageRef, file);
