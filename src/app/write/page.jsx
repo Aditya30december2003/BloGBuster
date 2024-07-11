@@ -1,4 +1,6 @@
 "use client"
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import storage from '@/utils/firebase'
 import React, { useState , useEffect } from 'react'
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { FaRegImage } from "react-icons/fa";
@@ -6,7 +8,7 @@ import { HiMiniArrowUpTray } from "react-icons/hi2";
 import { GoVideo } from "react-icons/go";
 import dynamic from 'next/dynamic'
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
-const FirebaseImports = dynamic(() => import('./firebaseConfig'), { ssr: false });
+// const FirebaseImports = dynamic(() => import('./firebaseConfig'), { ssr: false });
 import "react-quill/dist/quill.bubble.css"
 
 const ClientOnly = ({ children }) => {
@@ -28,8 +30,7 @@ const Page = () => {
     // const router = useRouter()
     useEffect(() => {
       if (typeof window !== 'undefined' && file) {
-        FirebaseImports.then((module) => {
-          const { getStorage, ref, uploadBytesResumable, getDownloadURL, app } = module;
+        import('./firebaseConfig').then(({ getStorage, ref, uploadBytesResumable, getDownloadURL, app }) => {
           const storage = getStorage(app);
           const name = new Date().getTime() + file.name;
           const storageRef = ref(storage, name);
