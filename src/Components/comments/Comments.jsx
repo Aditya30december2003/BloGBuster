@@ -20,8 +20,9 @@ const fetcher = async(url)=>{
 }
 
 const Comments = ({postSlug}) => {
+  const API_URL = process.env.NEXTAUTH_URL || ''
 
-  const {data ,mutate , isLoading} = useSWR(`http://localhost:3000/api/comments?postSlug=${postSlug}` ,
+  const {data ,mutate , isLoading} = useSWR(`${NEXTAUTH_URL}/api/comments?postSlug=${postSlug}` ,
     fetcher
   )
   const {status} = useSession()
