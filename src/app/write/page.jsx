@@ -21,6 +21,7 @@ const Page = () => {
     const [value, setValue] = useState("");
     const [title, setTitle] = useState("");
     const [catSlug, setCatSlug] = useState("");
+    // const router = useRouter()
     useEffect(() => {
       const storage = getStorage(app);
       const upload = () => {
@@ -77,6 +78,7 @@ const Page = () => {
           catSlug: catSlug || "style", //If not selected, choose the general category
         }),
       });
+      // router.reload();
     }
   return (
     <div className='w-[100%] h-screen'>

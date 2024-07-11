@@ -7,7 +7,7 @@ const nextConfig = {
       'avatars.githubusercontent.com',
       "firebasestorage.googleapis.com"
     ],
-    unoptimized: true, // Disable image optimization
+    // unoptimized: true, // Disable image optimization
   },
 };
 
