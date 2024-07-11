@@ -43,7 +43,7 @@ const Page = async({params}) => {
       </div>
 
       <div className="image w-[50%] hidden lg:block">
-      <Image className='rounded-md' src={data?.img} alt='scene2' width={400} height={300}/>
+      <Image className='rounded-md' src={data.img} alt='scene2' width={400} height={300}/>
       </div>
 
     </div>
