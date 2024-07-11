@@ -1,12 +1,20 @@
+// Import the functions you need from the SDKs you need
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { initializeApp } from 'firebase/app';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com", // Make sure this line is present
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: process.env.FIREBASE,
+  authDomain: "blog-app-428612.firebaseapp.com",
+  projectId: "blog-app-428612",
+  storageBucket: "blog-app-428612.appspot.com",
+  messagingSenderId: "983668899006",
+  appId: "1:983668899006:web:d57b324fba333b35e5b2ef"
 };
 
-export const app = initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+export { getStorage, ref, uploadBytesResumable, getDownloadURL, app };
