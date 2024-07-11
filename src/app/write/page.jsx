@@ -6,7 +6,11 @@ import { HiMiniArrowUpTray } from "react-icons/hi2";
 import { GoVideo } from "react-icons/go";
 import dynamic from "next/dynamic";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { app } from "./firebaseConfig"; // Import directly
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from './firebaseConfig'; // Adjust the import path as needed
+
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app); 
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.bubble.css";
