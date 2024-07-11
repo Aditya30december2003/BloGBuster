@@ -1,6 +1,6 @@
 const nextConfig = {
-  // output:"export",
-  // reactStrictMode: true,
+  output:"export",
+  reactStrictMode: true,
   images: {
     domains: [
       'lh3.googleusercontent.com', 
