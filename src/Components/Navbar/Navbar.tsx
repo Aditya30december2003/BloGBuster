@@ -55,7 +55,7 @@ const Navbar = () => {
 
     </div>
    
-    <div className={nav ?'text-center w-full h-full absolute top-0 hidden left-0 bg-white font-bold duration-700 text-black' : 'text-center opacity-0 hidden bg-white text-black w-full h-full absolute left-[-100%]   font-bold duration-700'}>
+    <div className={nav ?'text-center w-full h-full absolute top-0 left-0 bg-white font-bold duration-700 text-black' : 'text-center  bg-white text-black w-full h-full absolute left-[-100%]   font-bold duration-700'}>
       <div><ImCross onClick={()=>setNav(!nav)} className='cursor-pointer ml-[92%] mt-[2%]' size={23}/></div>
       <ul className='mt-[2rem] flex flex-col gap-4 text-[1.7rem]'>
         <Link href='/' className='cursor-pointer '>HomePage</Link>
