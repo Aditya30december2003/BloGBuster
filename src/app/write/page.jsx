@@ -1,5 +1,5 @@
 "use client"
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { useRouter } from 'next/navigation';
 import storage from '@/utils/firebase'
 import React, { useState , useEffect } from 'react'
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -27,7 +27,7 @@ const Page = () => {
     const [value, setValue] = useState("");
     const [title, setTitle] = useState("");
     const [catSlug, setCatSlug] = useState("");
-    // const router = useRouter()
+    const router = useRouter()
     useEffect(() => {
       if (typeof window !== 'undefined' && file) {
         import('./firebaseConfig').then(({ getStorage, ref, uploadBytesResumable, getDownloadURL, app }) => {
@@ -77,7 +77,7 @@ const Page = () => {
           catSlug: catSlug || "style", //If not selected, choose the general category
         }),
       });
-      // router.reload();
+     router.push("/")
     }
   return (
     <div className='w-[100%] h-screen'>
