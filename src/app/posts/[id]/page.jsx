@@ -38,12 +38,13 @@ const Page = async({params}) => {
         <div className='flex flex-col gap-1 text-[0.7rem] font-bold'>
         <p className="name">{data?.userEmail}</p>
         <p className="date">{data?.createdAt.slice(0,10)}</p>
+        <p>Views:{data.views}</p>
         </div>
       </div>
       </div>
 
       <div className="image w-[50%] hidden lg:block">
-      <Image className='rounded-md' src={data.img} alt='scene2' width={400} height={300}/>
+      {data.img ?<Image className='rounded-md' src={data?.img} alt='scene2' width={400} height={300}/> : <Image className='rounded-md' src='./NoImage.jpg' alt='scene2' width={400} height={300}/>}
       </div>
 
     </div>

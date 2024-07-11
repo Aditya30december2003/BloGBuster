@@ -4,7 +4,7 @@ import Link from 'next/link'
 const Card = ({key , item}) => {
   return (
     <Link href={`${process.env.NEXTAUTH_URL}/posts/${item.slug}`} className='mt-[0.8rem] flex flex-col lg:flex-row w-full gap-5' key={key}>
-      <div>{!item.img?<></>:<Image className='w-[40rem] h-[25rem] object-cover' src={item.img} alt='scene' width={1050} height={1050}/>}</div>
+      <div>{!item.img?<Image src='./NoImage.jpg' alt='no-image' className='w-[40rem] h-[25rem] object-cover'  width={1050} height={1050} ></Image>:<Image className='w-[40rem] h-[25rem] object-cover' src={item.img} alt='scene' width={1050} height={1050}/>}</div>
       <div className='flex flex-col gap-3 items-start'>
         <div className='text-[0.8rem] text-gray-600'>{item.createdAt.slice(0,10)}<span className='text-red-500 ml-3'>{item.cat}</span></div>
        <div>{item.title?<div className='font-bold text-[1.25rem]'>{item.title}</div>:<div>No title</div>}</div> 
