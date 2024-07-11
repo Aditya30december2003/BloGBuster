@@ -21,6 +21,9 @@ const getData = async (id) => {
 const Page = async({params}) => {
   const {id}=  params
 
+  function createMarkup() {
+    return {__html: data?.title};
+  }
   
     const data = await getData(id);
     console.log("Fetched data:", data);
@@ -30,9 +33,8 @@ const Page = async({params}) => {
     <div className='flex items-center gap-6 w-full justify-between'>
 
       <div className='w-[100%] lg:w-[50%] flex flex-col gap-10'>
-      <div className="title text-[2.2rem] font-bold w-[100%] lg:w-[86%]">
-        {data?.title}
-      </div>
+      <div dangerouslySetInnerHTML={createMarkup()} className="title text-[2.2rem] font-bold w-[100%] lg:w-[86%]" />
+      <div className='text-black'>{data?.desc}</div>
       <div className="name flex gap-3 items-center">
         <Image  className='rounded-[100%] object-cover w-[2.2rem] h-[2.2rem]' src={data.user.image} alt='scene2' width={30} height={20}/>
         <div className='flex flex-col gap-1 text-[0.7rem] font-bold'>
@@ -44,7 +46,7 @@ const Page = async({params}) => {
       </div>
 
       <div className="image w-[50%] hidden lg:block">
-      {data.img ?<Image className='rounded-md' src={data?.img} alt='scene2' width={400} height={300}/> : <Image className='rounded-md' src='./NoImage.jpg' alt='scene2' width={400} height={300}/>}
+      {data.img ?<Image className='rounded-md' src={data?.img} alt='/scene2' width={400} height={300}/> : <Image className='rounded-md' src='./NoImage.jpg' alt='scene2' width={400} height={300}/>}
       </div>
 
     </div>
